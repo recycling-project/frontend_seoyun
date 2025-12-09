@@ -91,7 +91,11 @@ export default function LargeOptionPage() {
               // 선택 버튼 옵션
               const choices: Record<string, string[]> = {
                 person: ["1", "2", "3", "4"],
-                size: ["소형", "대형", "일인용", "이인용"],
+                size:
+                  cls === "bed"
+                    ? ["일인용", "이인용"]      // 침대용
+                    : ["소형", "대형"],         // 책상 등 다른 품목용
+
                 part: ["매트리스", "틀"],
                 type2: ["일반용", "미용실용"],
               };
@@ -106,10 +110,9 @@ export default function LargeOptionPage() {
                         className={`
                           px-[50px] py-[25px] rounded-[25px] text-[36px]
                           border-4 border-[#8ED49A]
-                          ${
-                            options[field] == v
-                              ? "bg-[#8ED49A] text-white font-bold"
-                              : "bg-white text-[#2F7239]"
+                          ${options[field] == v
+                            ? "bg-[#8ED49A] text-white font-bold"
+                            : "bg-white text-[#2F7239]"
                           }
                         `}
                       >
