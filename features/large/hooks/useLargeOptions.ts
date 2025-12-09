@@ -48,12 +48,12 @@
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 
-/* ---------------------------------------------------------
-   🔥 각 대형폐기물 품목별 필요한 옵션 정의 테이블
-   → 이 구조 하나로 10개 옵션 페이지 전부 처리 가능
---------------------------------------------------------- */
+const normalize: Record<string, string> = {
+  bike: "bicycle"  
+};
+
 type OptionConfig = {
-  fields: string[]; // 품목이 가지는 옵션들
+  fields: string[];
 };
 
 const OPTION_MAP: Record<string, OptionConfig> = {
@@ -69,18 +69,15 @@ const OPTION_MAP: Record<string, OptionConfig> = {
   "bed": { fields: ["part", "size", "count"] },
 };
 
-/* ---------------------------------------------------------
-   🔥 통합 훅: useLargeOptions
-   → 이 훅 하나로 10개 품목의 옵션/가격/결제 로직 끝
---------------------------------------------------------- */
 export const useLargeOptions = () => {
-  const { cls } = useParams(); // /options/[cls] → sofa, bed 등
+  const { cls } = useParams();
   const router = useRouter();
 
-  // 이 품목이 어떤 옵션을 갖는지 가져오기
-  const config = OPTION_MAP[String(cls)];
+  const normalizedCls =
+    normalize[String(cls)] ?? String(cls);
 
-  // 기본 옵션 값
+  const config = OPTION_MAP[normalizedCls];
+
   const [options, setOptions] = useState<any>({
     count: 1,
     person: 2,
@@ -95,42 +92,26 @@ export const useLargeOptions = () => {
   const [price, setPrice] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
 
-  /* ---------------------------------------------------------
-     🔥 옵션 변경 함수 (UI에서 바로 사용)
---------------------------------------------------------- */
   const update = (field: string, value: any) => {
     let v = value;
 
-    // 숫자 변환 필드
     if (["count", "person", "height", "width", "drawers"].includes(field)) {
       v = Number(value);
     }
 
-    // 🔥 침대 part 정규화 (프레임 → 틀 로 강제 변환)
-    if (field === "part") {
-      if (v === "프레임") v = "틀";
-      if (typeof v === "string") v = v.trim(); // 공백 제거
-    }
-
-    // 🔥 침대 size 정규화 (혹시 UI에서 잘못 들어가는 값 방지)
-    if (field === "size") {
-      if (typeof v === "string") v = v.trim();
-    }
+    if (field === "part" && v === "프레임") v = "틀";
 
     setOptions((prev: any) => ({
       ...prev,
       [field]: v,
     }));
   };
-  /* ---------------------------------------------------------
-     🔥 가격 자동 계산 (옵션이 바뀔 때마다 실행)
---------------------------------------------------------- */
+
   useEffect(() => {
     if (!config) return;
 
-    const body: any = { type: cls };
+    const body: any = { type: normalizedCls };
 
-    // 해당 품목이 가진 옵션만 body에 포함
     config.fields.forEach((f) => {
       body[f] = options[f];
     });
@@ -146,7 +127,6 @@ export const useLargeOptions = () => {
             body: JSON.stringify(body),
           }
         );
-
         const data = await res.json();
         setPrice(data.price ?? null);
       } finally {
@@ -155,21 +135,20 @@ export const useLargeOptions = () => {
     };
 
     fetchPrice();
-  }, [options, cls]);
+  }, [options, normalizedCls]);
 
-  /* ---------------------------------------------------------
-     🔥 결제 페이지 이동 (공통)
---------------------------------------------------------- */
   const goToPayment = () => {
     if (!price) return;
 
     router.push(
-      `/payment?amount=${price}&orderName=${cls} (${JSON.stringify(options)})`
+      `/payment?amount=${price}&orderName=${normalizedCls} (${JSON.stringify(
+        options
+      )})`
     );
   };
 
   return {
-    cls,
+    cls: normalizedCls,
     config,
     options,
     price,
