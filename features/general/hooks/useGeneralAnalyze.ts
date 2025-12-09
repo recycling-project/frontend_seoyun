@@ -34,8 +34,8 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { getQRImage } from "@/features/general/api/getQRImage";
-import { analyzeWaste } from "@/features/general/api/analyzeWaste";
+import { getQRImage } from "@features/general/api/getQRImage";
+import { analyzeWaste } from "@features/general/api/analyzeWaste";
 
 export function useGeneralAnalyze() {
   const router = useRouter();
