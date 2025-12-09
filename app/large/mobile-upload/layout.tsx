@@ -12,7 +12,6 @@ export default function MobileUploadLayout({
           left: 0,
           width: "100vw",
           height: "100vh",
-
           margin: 0,
           padding: 0,
           overflow: "hidden",
@@ -24,7 +23,7 @@ export default function MobileUploadLayout({
           background: "black",
         }}
       >
-        {/* 1080×1920 키오스크 화면 */}
+        {/* 키오스크 화면 */}
         <div
           style={{
             width: "1080px",
@@ -36,17 +35,6 @@ export default function MobileUploadLayout({
         >
           {children}
         </div>
-
-        <style>{`
-          html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden !important;
-            background: black !important;
-          }
-        `}</style>
       </body>
     </html>
   );
