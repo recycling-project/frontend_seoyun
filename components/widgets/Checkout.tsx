@@ -1,6 +1,6 @@
 "use client";
 
-import { useCheckoutWidget } from "@/features/payment/hooks/useCheckoutWidget";
+import { useCheckoutWidget } from "@features/payment/hooks/useCheckoutWidget";
 
 interface CheckoutProps {
   amount: number;
