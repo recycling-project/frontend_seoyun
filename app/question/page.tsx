@@ -154,7 +154,7 @@ export default function QuestionPage() {
 
           const result = await res.json();
           router.push(
-            `/question_answer?data=${encodeURIComponent(JSON.stringify(result))}`
+            `/question/answer?data=${encodeURIComponent(JSON.stringify(result))}`
           );
         }}
       >
@@ -303,7 +303,7 @@ export default function QuestionPage() {
 
           const result = await res.json();
           router.push(
-            `/question_answer?data=${encodeURIComponent(JSON.stringify(result))}`
+            `/question/answer?data=${encodeURIComponent(JSON.stringify(result))}`
           );
         }}
       >
