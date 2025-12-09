@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useLargeCapture } from "@/features/large/hooks/useLargeCapture";
+import { useLargeCapture } from "@features/large/hooks/useLargeCapture";
 
 export default function LargeCameraPage() {
   const router = useRouter();

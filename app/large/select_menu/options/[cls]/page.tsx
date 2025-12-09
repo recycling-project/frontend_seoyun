@@ -1,6 +1,6 @@
 "use client";
 
-import { useLargeOptions } from "@/features/large/hooks/useLargeOptions";
+import { useLargeOptions } from "@features/large/hooks/useLargeOptions";
 
 export default function LargeOptionPage() {
   const { cls, config, options, price, loading, update, goToPayment } =

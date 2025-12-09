@@ -1,6 +1,6 @@
 "use client";
 
-import { useLargeWaitUpload } from "@/features/large/hooks/useLargeWaitUpload";
+import { useLargeWaitUpload } from "@features/large/hooks/useLargeWaitUpload";
 
 export default function LargeWaitPage() {
   useLargeWaitUpload();

@@ -1,7 +1,7 @@
 "use client";
 
 import { QRCodeCanvas } from "qrcode.react";
-import { useLargeQRCheck } from "@/features/large/hooks/useLargeQRCheck";
+import { useLargeQRCheck } from "@features/large/hooks/useLargeQRCheck";
 
 export default function LargeQRPage() {
   useLargeQRCheck();

@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
-import { useLargeAnalyze } from "@/features/large/hooks/useLargeAnalyze";
+import { useLargeAnalyze } from "@features/large/hooks/useLargeAnalyze";
 
 function AnalyzeUI() {
   useLargeAnalyze();

@@ -1,6 +1,6 @@
 // app/general_waste/wait/page.tsx
 "use client";
-import { useWaitForUpload } from "@/features/general/hooks/useWaitForUpload";
+import { useWaitForUpload } from "@features/general/hooks/useWaitForUpload";
 
 export default function WaitPage() {
   useWaitForUpload();

@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
-import { useGeneralAnalyze } from "@/features/general/hooks/useGeneralAnalyze";
+import { useGeneralAnalyze } from "@features/general/hooks/useGeneralAnalyze";
 
 export default function WasteAnalyzePage() {
   return (

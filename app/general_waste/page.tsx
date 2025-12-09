@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useGeneralCapture } from "@/features/general/hooks/useGeneralCapture";
+import { useGeneralCapture } from "@features/general/hooks/useGeneralCapture";
 
 export default function GeneralWastePage() {  
   const router = useRouter();

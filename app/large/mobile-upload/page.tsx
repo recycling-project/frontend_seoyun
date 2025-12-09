@@ -1,6 +1,6 @@
 "use client";
 
-import { useLargeMobileUpload } from "@/features/large/hooks/useLargeMobileUpload";
+import { useLargeMobileUpload } from "@features/large/hooks/useLargeMobileUpload";
 
 export default function LargeMobileUploadPage() {
   const {

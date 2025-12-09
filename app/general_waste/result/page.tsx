@@ -1,7 +1,7 @@
 "use client";
 import { Suspense } from "react";
 import { useRouter } from "next/navigation";
-import { useWasteResult } from "@/features/general/hooks/useWasteResult";
+import { useWasteResult } from "@features/general/hooks/useWasteResult";
 
 function WasteResultContent() {
   const router = useRouter();
