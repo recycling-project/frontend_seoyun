@@ -6,7 +6,8 @@ import { useEffect } from "react";
 
 export default function QRPage() {
   const uploadUrl =
-    "https://frontend-self-delta-10.vercel.app/general_waste/mobile-upload";
+    // "https://frontend-self-delta-10.vercel.app/general_waste/mobile_upload";  // 기존 배포 경로 
+    "https://frontend-seoyun.vercel.app/general_waste/mobile_upload"   //두번째 배포경로 
 
   const router = useRouter();
 
