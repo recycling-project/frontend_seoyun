@@ -106,6 +106,17 @@ export const useLargeOptions = () => {
       v = Number(value);
     }
 
+    // 🔥 침대 part 정규화 (프레임 → 틀 로 강제 변환)
+    if (field === "part") {
+      if (v === "프레임") v = "틀";
+      if (typeof v === "string") v = v.trim(); // 공백 제거
+    }
+
+    // 🔥 침대 size 정규화 (혹시 UI에서 잘못 들어가는 값 방지)
+    if (field === "size") {
+      if (typeof v === "string") v = v.trim();
+    }
+
     setOptions((prev: any) => ({
       ...prev,
       [field]: v,
