@@ -50,7 +50,7 @@ export const useLargeCapture = () => {
 
     const base64 = canvas.toDataURL("image/png");
 
-    localStorage.setItem("largeImage", base64);
+    localStorage.setItem("large_waste_image", base64);
     router.push("/large/analyze");
   };
 
