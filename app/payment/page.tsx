@@ -2,7 +2,7 @@
 
 import { Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import Checkout from "@/components/widgets/Checkout";
+import Checkout from "@components/widgets/Checkout";
 
 function PaymentInner() {
   const params = useSearchParams();
