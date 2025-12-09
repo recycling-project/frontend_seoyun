@@ -1,0 +1,12 @@
+app/
+ ├─ question/
+ │    ├─ page.tsx                   ← 질문 UI
+ │    ├─ hooks/
+ │    │     ├─ useQuestion.ts       ← 질문 로직 (text, 조합, submit)
+ │    │     └─ useKeyboard.ts       ← 키보드 로직만 따로 분리 가능
+ │    ├─ components/
+ │    │     ├─ Keyboard.tsx         ← 키보드 컴포넌트
+ │    │     └─ PreviewBox.tsx       ← 텍스트 미리보기
+ │    ├─ answer/
+ │    │     ├─ page.tsx             ← 결과 페이지 UI
+ │    │     └─ useQuestionAnswer.ts ← 결과 가져오는 로직

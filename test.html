@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask 예측 테스트</title>
+</head>
+<body>
+    <h2>Flask 예측 테스트</h2>
+    <input id="inputText" placeholder="입력하세요">
+    <button onclick="send()">전송</button>
+    <p id="result"></p>
+
+    <script>
+    async function send() {
+        const text = document.getElementById("inputText").value;
+
+        const response = await fetch("http://localhost:8080/call-flask", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text })
+        });
+
+        const data = await response.json();
+        document.getElementById("result").innerText = "결과: " + data.result;
+        console.log("서버 응답:", data);
+    }
+    </script>
+</body>
+</html>

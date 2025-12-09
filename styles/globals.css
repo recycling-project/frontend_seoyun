@@ -1,0 +1,531 @@
+
+@import "tailwindcss";
+
+
+/* ============================================
+   0. 기본 리셋
+============================================ */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+               Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+               sans-serif;
+}
+
+button {
+  border: none;
+  outline: none;
+}
+
+/* 예전 코드 호환용 (안 써도 상관 없음) */
+/* .page-bg {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;   🔥 kiosk를 수직/수평 정중앙 배치 
+  background: #000;
+  overflow: hidden;
+} */
+
+/* ============================================
+   1. 공통 루트 컨테이너 (A방식)
+   - .page : 새 구조
+   - .kiosk : 예전 구조와 호환용 (둘 다 동일하게 처리)
+============================================ */
+.page {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ============================================
+   2. 공통 요소들
+============================================ */
+/* 뒤로가기 아이콘 */
+.back-btn,
+.question_back {
+  position: absolute;
+  top: 60px;
+  left: 40px;
+  width: 90px;
+  height: 90px;
+  z-index: 2000;
+  cursor: pointer;
+}
+
+/* 하단 바(결과 화면 등에서 사용) */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  z-index: 5;
+}
+
+/* ============================================
+   3. 인트로 화면(/)
+============================================ */
+.start-screen {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding-bottom: 120px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.start-text {
+  font-size: 32px;
+  line-height: 1.5;
+  margin-bottom: 60px;
+  opacity: 0.9;
+}
+
+.start-sub {
+  font-size: 24px;
+  line-height: 1.4;
+  opacity: 0.6;
+}
+
+/* ============================================
+   4. 메뉴 화면(/menu)
+============================================ */
+.menu-buttons {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 50px;
+}
+
+.menu-btn,
+.kiosk-button {
+  width: 380px;
+  height: 160px;
+
+  background: #C9C9C9;
+  border-radius: 30px;
+  border: 4px solid white;
+
+  color: white;
+  font-size: 38px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+/* ============================================
+   5. 카메라 공통 (general_waste, first_screen 등)
+============================================ */
+.camera-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.camera-preview {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* ✔ 원본 비율 유지 + 꽉 채우기 */
+  background: #000000;
+}
+
+/* UI 오버레이 */
+.camera-overlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-top: 180px;
+  padding-bottom: 200px;
+
+  pointer-events: none; /* 오버레이 자체는 클릭 막기 */
+}
+
+.camera-overlay button {
+  pointer-events: auto;  /* 버튼만 클릭 가능 */
+}
+
+/* 안내 텍스트 */
+.detect-content {
+  text-align: center;
+  color: white;
+}
+
+.detect-icon {
+  width: 140px;
+  height: 140px;
+}
+
+.detect-text {
+  margin-top: 20px;
+  font-size: 30px;
+  line-height: 1.5;
+}
+
+/* 카메라 하단 버튼 */
+.camera-bottom-button-area,
+.bottom-button-area {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+}
+
+.photo-btn,
+.first-btn {
+  width: 300px;
+  height: 80px;
+  font-size: 26px;
+  font-weight: 600;
+
+  background: #fff;
+  color: #000;
+  border-radius: 14px;
+  border: 3px solid #fff;
+
+  cursor: pointer;
+}
+
+/* first_screen 전용 (텍스트/아이콘 위치 조금 내리고 싶을 때 썼던 것) */
+.recyleset {
+  margin-top: 100px;
+}
+
+/* ============================================
+   6. 대형 폐기물 메인(/Large_waste)
+============================================ */
+/* 촬영 프레임 */
+.frame-icon {
+  position: absolute;
+  top: 260px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 420px;
+  height: 420px;
+}
+
+/* 아래 안내 버튼 */
+.Large_waste-btn {
+  width: 540px;
+  height: 90px;
+
+  background: #C9C9C9;
+  border-radius: 20px;
+  border: 4px solid white;
+
+  color: white;
+  font-size: 26px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Large_waste에서 사용하던 bottom-button-area 재사용 */
+
+/* ============================================
+   7. 대형 폐기물 로딩(/Large_waste_loding)
+============================================ */
+.loading-wrapper {
+  position: absolute;
+  bottom: 280px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-gif {
+  width: 260px;
+  height: 260px;
+}
+
+/* ============================================
+   8. 대형 폐기물 종류 선택(/Large_waste_kind)
+============================================ */
+.kind-text {
+  font-size: 40px;
+  line-height: 1.5;
+  margin-top: 160px;
+  margin-bottom: 60px;
+  color: white;
+  text-align: center;
+}
+
+.kind-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 70px;
+}
+
+.kind-btn {
+  width: 360px;
+  height: 140px;
+  border-radius: 20px;
+  font-size: 40px;
+  font-weight: 600;
+}
+
+/* ============================================
+   9. 대형 폐기물 상세(/Large_waste_details)
+============================================ */
+.detail-title {
+  color: white;
+  font-size: 40px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 160px;
+  margin-bottom: 60px;
+}
+
+/* 옵션 박스 공통 */
+.option-box {
+  background: rgba(255, 255, 255, 0.15);
+  width: 380px;
+  padding: 24px;
+  border-radius: 20px;
+  margin: 24px auto;
+  text-align: center;
+}
+
+.option-title {
+  color: white;
+  font-size: 28px;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+/* 문짝 너비 버튼 그룹 */
+.width-btn-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.width-btn {
+  width: 140px;
+  height: 70px;
+  background: #E5E5E5;
+  border-radius: 14px;
+  color: black;
+  border: 3px solid white;
+  font-size: 24px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.width-btn.selected {
+  background: white;
+  color: black;
+  font-weight: bold;
+  border: 3px solid #26d542;
+}
+
+/* 문짝 개수 카운터 */
+.count-box-wrapper {
+  margin-top: 60px;
+}
+
+.count-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.count-arrow {
+  width: 48px;
+  height: 48px;
+  font-size: 26px;
+  background: #bbb;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.count-number {
+  color: white;
+  font-size: 28px;
+  width: 60px;
+  text-align: center;
+}
+
+/* 결제 금액 + 버튼 */
+.price-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin-top: 160px;
+}
+
+.price-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.price-amount {
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.pay-btn {
+  width: 160px;
+  height: 60px;
+  background: #ddd;
+  border-radius: 14px;
+  border: 2px solid white;
+  cursor: pointer;
+}
+
+/* ============================================
+   10. 대형 폐기물 결과(/Large_waste_result)
+============================================ */
+.result-box {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 420px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 24px 20px;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.result-text {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.result-btn-area {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.result-btn {
+  flex: 1;
+  height: 48px;
+  border-radius: 10px;
+  background: #e3e3e3;
+  border: 2px solid #000;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* ============================================
+   11. QR 업로드 화면(/general_waste/qr 등)
+============================================ */
+.qr-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ============================================
+   12. 질문하기(/question) & 답변(/question_answer)
+============================================ */
+.chat-box {
+  width: 80%;
+  max-width: 800px;
+  height: 280px;
+  background: white;
+  border-radius: 24px;
+  margin-top: 120px;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.chat-text {
+  white-space: pre-wrap;
+  font-size: 26px;
+  line-height: 1.7;
+  color: black;
+}
+
+.chat-placeholder {
+  text-align: center;
+  font-size: 24px;
+  color: gray;
+  margin-top: 80px;
+}
+
+/* 입력칸 + 버튼 */
+.ask-container {
+  position: fixed;
+  left: 50%;
+  bottom: 140px;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.questiontext-input {
+  width: 330px;
+  height: 80px;
+  background: white;
+  color: black;
+  border-radius: 14px;
+  border: none;
+  font-size: 28px;
+  text-align: center;
+}
+
+.ask-btn {
+  position: fixed;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  width: 330px;
+  height: 80px;
+  background: white;
+  color: black;
+  border-radius: 14px;
+  font-size: 28px;
+  font-weight: 600;
+  z-index: 900;
+}
+
+/* 키보드 떠있을 때 위로 올리는 클래스 (예전 코드 호환) */
+.ask-btn.up {
+  bottom: 48dvh;
+}
+
+.ask-container.up {
+  transform: translate(-50%, -60px);
+}
