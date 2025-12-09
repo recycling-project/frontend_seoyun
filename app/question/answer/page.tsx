@@ -5,6 +5,7 @@ import Keyboard from "@/question/components/Keyboard";
 import PreviewBox  from "@/question/components/PreviewBox";
 import { useQuestion } from "@/question/hooks/useQuestion";
 import { useKeyboard } from "@/question/hooks/useKeyboard";
+import { useQuestionAnswer } from "@/question/hooks/useQuestionAnswer";
 
 export default function QuestionPage() {
   const router = useRouter();
