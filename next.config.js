@@ -6,6 +6,8 @@ const nextConfig = {
   webpack(config) {
     config.resolve.alias['@'] = path.resolve(__dirname, 'app');
     config.resolve.alias['@features'] = path.resolve(__dirname, 'features');
+    config.resolve.alias["@components"] = path.resolve(__dirname, "components");
+
     return config;
   },
   // Turbopack 비활성화
